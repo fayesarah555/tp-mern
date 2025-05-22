@@ -1,3 +1,4 @@
+/* Variables CSS */
 :root {
   --couleur-primaire: #ff6600;
   --couleur-secondaire: #f5f5f5;
@@ -151,21 +152,215 @@ body {
   color: var(--couleur-primaire);
 }
 
-.btn-modifier-detail {
+.formulaire-auth,
+.formulaire-annonce {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.groupe-champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.groupe-champ label {
+  font-weight: 600;
+  color: var(--couleur-texte);
+}
+
+.groupe-champ input,
+.groupe-champ textarea,
+.groupe-champ select {
+  padding: 0.75rem;
+  border: 2px solid var(--couleur-bordure);
+  border-radius: var(--rayon-bordure);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.groupe-champ input:focus,
+.groupe-champ textarea:focus,
+.groupe-champ select:focus {
+  outline: none;
+  border-color: var(--couleur-primaire);
+}
+
+.groupe-champ small {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.btn-principal {
   background-color: var(--couleur-primaire);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: var(--rayon-bordure);
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 1rem;
 }
 
-.btn-modifier-detail:hover {
+.btn-principal:hover:not(:disabled) {
   background-color: #e55a00;
 }
+
+.btn-principal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondaire {
+  background-color: transparent;
+  color: var(--couleur-texte);
+  border: 2px solid var(--couleur-bordure);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondaire:hover {
+  background-color: var(--couleur-secondaire);
+}
+
+.message-erreur {
+  background-color: #ffeaea;
+  color: var(--couleur-erreur);
+  padding: 1rem;
+  border-radius: var(--rayon-bordure);
+  border-left: 4px solid var(--couleur-erreur);
+  margin-bottom: 1rem;
+}
+
+.lien-alternatif {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.lien-alternatif a {
+  color: var(--couleur-primaire);
+  text-decoration: none;
+}
+
+.lien-alternatif a:hover {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+   LISTE DES ANNONCES
+   ============================================================================= */
+
+.liste-annonces {
+  padding: 1rem 0;
+}
+
+.en-tete-annonces {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.en-tete-annonces h1 {
+  color: var(--couleur-primaire);
+  margin: 0;
+}
+
+.filtres {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filtres label {
+  font-weight: 600;
+  color: var(--couleur-texte);
+}
+
+.selecteur-categorie {
+  padding: 0.5rem;
+  border: 2px solid var(--couleur-bordure);
+  border-radius: var(--rayon-bordure);
+  background-color: white;
+  cursor: pointer;
+}
+
+.grille-annonces {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.carte-annonce {
+  background: white;
+  border-radius: var(--rayon-bordure);
+  box-shadow: var(--ombre-carte);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carte-annonce:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.carte-annonce h3 {
+  color: var(--couleur-primaire);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.carte-annonce .prix {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--couleur-succes);
+  margin-bottom: 0.5rem;
+}
+
+.carte-annonce .categorie,
+.carte-annonce .auteur {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.carte-annonce .description {
+  color: var(--couleur-texte);
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+.actions-annonce {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-voir-details {
+  background-color: var(--couleur-primaire);
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.btn-voir-details:hover {
+  background-color: #e55a00;
+}
+
 .btn-modifier {
   background-color: var(--couleur-primaire);
   color: white;
@@ -181,10 +376,301 @@ body {
   background-color: #e55a00;
 }
 
-// Modifier .actions-annonce pour grid layout:
-.actions-annonce {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 0.5rem;
-  margin-top: 1rem;
+.btn-supprimer {
+  background-color: var(--couleur-erreur);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-supprimer:hover {
+  background-color: #c0392b;
+}
+
+.aucune-annonce {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin: 3rem 0;
+  grid-column: 1 / -1;
+}
+
+/* =============================================================================
+   CRÉER/MODIFIER ANNONCE
+   ============================================================================= */
+
+.creer-annonce {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.creer-annonce .formulaire-container {
+  max-width: 100%;
+}
+
+.creer-annonce h2 {
+  color: var(--couleur-primaire);
+  margin-bottom: 1.5rem;
+}
+
+.boutons-action {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.boutons-action button {
+  flex: 1;
+}
+
+/* =============================================================================
+   DÉTAIL ANNONCE
+   ============================================================================= */
+
+.detail-annonce {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.en-tete-detail {
+  margin-bottom: 2rem;
+}
+
+.btn-retour {
+  background-color: var(--couleur-secondaire);
+  color: var(--couleur-texte);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--rayon-bordure);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-retour:hover {
+  background-color: #e0e0e0;
+}
+
+.annonce-container {
+  background: white;
+  border-radius: var(--rayon-bordure);
+  box-shadow: var(--ombre-carte);
+  overflow: hidden;
+}
+
+.contenu-annonce {
+  padding: 2rem;
+}
+
+.contenu-annonce h1 {
+  color: var(--couleur-primaire);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.meta-annonce {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.prix-detail {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--couleur-succes);
+}
+
+.categorie-detail {
+  font-size: 1.1rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.informations-auteur {
+  background-color: var(--couleur-secondaire);
+  padding: 1.5rem;
+  border-radius: var(--rayon-bordure);
+  margin-bottom: 2rem;
+}
+
+.informations-auteur h3 {
+  color: var(--couleur-primaire);
+  margin-bottom: 1rem;
+}
+
+.informations-auteur p {
+  margin-bottom: 0.5rem;
+  color: var(--couleur-texte);
+}
+
+.description-complete {
+  margin-bottom: 2rem;
+}
+
+.description-complete h3 {
+  color: var(--couleur-primaire);
+  margin-bottom: 1rem;
+}
+
+.description-complete p {
+  line-height: 1.7;
+  color: var(--couleur-texte);
+  white-space: pre-wrap;
+}
+
+.actions-detail {
+  border-top: 1px solid var(--couleur-bordure);
+  padding-top: 1.5rem;
+}
+
+.btn-modifier-detail {
+  background-color: var(--couleur-primaire);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+}
+
+.btn-modifier-detail:hover {
+  background-color: #e55a00;
+}
+
+.btn-supprimer-detail {
+  background-color: var(--couleur-erreur);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-supprimer-detail:hover {
+  background-color: #c0392b;
+}
+
+/* =============================================================================
+   ERREUR PAGE
+   ============================================================================= */
+
+.erreur-page {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: var(--rayon-bordure);
+  box-shadow: var(--ombre-carte);
+  margin: 2rem 0;
+}
+
+.erreur-page h2 {
+  color: var(--couleur-erreur);
+  margin-bottom: 1rem;
+}
+
+.erreur-page p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-liens {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .utilisateur-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contenu-principal {
+    padding: 1rem;
+  }
+
+  .en-tete-annonces {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtres {
+    justify-content: center;
+  }
+
+  .grille-annonces {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .actions-annonce {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .meta-annonce {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .boutons-action {
+    flex-direction: column;
+  }
+
+  .prix-detail {
+    font-size: 1.5rem;
+  }
+
+  .contenu-annonce h1 {
+    font-size: 1.5rem;
+  }
+
+  .contenu-annonce {
+    padding: 1rem;
+  }
+
+  .actions-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-modifier-detail {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulaire-container {
+    padding: 1.5rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .carte-annonce {
+    padding: 1rem;
+  }
 }
