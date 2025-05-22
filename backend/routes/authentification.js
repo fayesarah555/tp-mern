@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const Utilisateur = require('../modeles/Utilisateur');
+const Utilisateur = require('../models/Utilisateur');
 const routeur = express.Router();
 
 // Génération du token JWT

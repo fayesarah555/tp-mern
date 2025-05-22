@@ -1,5 +1,5 @@
 const express = require('express');
-const Annonce = require('../modeles/Annonce');
+const Annonce = require('../models/Annonce');
 const verifierToken = require('../middleware/authentification');
 const routeur = express.Router();
 
