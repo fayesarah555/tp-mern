@@ -25,7 +25,51 @@ routeur.get('/', async (req, res) => {
     });
   }
 });
-
+routeur.put('/:id', verifierToken, async (req, res) => {
+    try {
+      const { titre, description, prix, categorie } = req.body;
+      
+      // Trouver l'annonce
+      const annonce = await Annonce.findById(req.params.id);
+      
+      if (!annonce) {
+        return res.status(404).json({
+          message: 'Annonce non trouvée'
+        });
+      }
+  
+      // Vérifier que l'utilisateur est le propriétaire de l'annonce
+      if (annonce.auteur.toString() !== req.utilisateur._id.toString()) {
+        return res.status(403).json({
+          message: 'Accès refusé. Vous ne pouvez modifier que vos propres annonces.'
+        });
+      }
+  
+      // Mettre à jour l'annonce
+      const annonceModifiee = await Annonce.findByIdAndUpdate(
+        req.params.id,
+        {
+          titre,
+          description,
+          prix,
+          categorie
+        },
+        { new: true, runValidators: true }
+      ).populate('auteur', 'nomUtilisateur');
+  
+      res.json({
+        message: 'Annonce modifiée avec succès',
+        annonce: annonceModifiee
+      });
+  
+    } catch (erreur) {
+      res.status(400).json({
+        message: 'Erreur lors de la modification de l\'annonce',
+        erreur: erreur.message
+      });
+    }
+  });
+  
 // Obtenir une annonce par ID (PUBLIC)
 routeur.get('/:id', async (req, res) => {
   try {

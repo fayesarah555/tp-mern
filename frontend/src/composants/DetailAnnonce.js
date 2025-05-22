@@ -8,7 +8,7 @@ const DetailAnnonce = () => {
   const [annonce, setAnnonce] = useState(null);
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState('');
-
+  const [utilisateurConnecte, setUtilisateurConnecte] = useState(null);
   useEffect(() => {
     const chargerAnnonce = async () => {
       try {
@@ -25,6 +25,12 @@ const DetailAnnonce = () => {
     chargerAnnonce();
   }, [id]);
 
+  useEffect(() => {
+    const utilisateur = localStorage.getItem('utilisateur');
+    if (utilisateur) {
+      setUtilisateurConnecte(JSON.parse(utilisateur));
+    }
+  }, []);
   const supprimerAnnonce = async () => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer cette annonce ?')) {
       try {
@@ -83,14 +89,24 @@ const DetailAnnonce = () => {
             <p>{annonce.description}</p>
           </div>
           
-          <div className="actions-detail">
-            <button 
-              onClick={supprimerAnnonce}
-              className="btn-supprimer-detail"
-            >
-              Supprimer cette annonce
-            </button>
-          </div>
+         <div className="actions-detail">
+  {utilisateurConnecte && annonce.auteur && 
+   utilisateurConnecte.id === annonce.auteur._id && (
+    <button 
+      onClick={() => navigate(`/modifier-annonce/${id}`)}
+      className="btn-modifier-detail"
+    >
+      Modifier cette annonce
+    </button>
+  )}
+  
+  <button 
+    onClick={supprimerAnnonce}
+    className="btn-supprimer-detail"
+  >
+    Supprimer cette annonce
+  </button>
+</div>
         </div>
       </div>
     </div>

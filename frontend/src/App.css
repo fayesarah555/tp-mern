@@ -151,3 +151,40 @@ body {
   color: var(--couleur-primaire);
 }
 
+.btn-modifier-detail {
+  background-color: var(--couleur-primaire);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+}
+
+.btn-modifier-detail:hover {
+  background-color: #e55a00;
+}
+.btn-modifier {
+  background-color: var(--couleur-primaire);
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--rayon-bordure);
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.btn-modifier:hover {
+  background-color: #e55a00;
+}
+
+// Modifier .actions-annonce pour grid layout:
+.actions-annonce {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}

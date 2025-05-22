@@ -22,12 +22,12 @@ export const authentificationService = {
   connexion: (donneesConnexion) => api.post('/auth/connexion', donneesConnexion),
 };
 
-// Services des annonces
+
 export const annoncesService = {
   obtenirToutesAnnonces: (categorie) => api.get(`/annonces${categorie ? `?categorie=${categorie}` : ''}`),
   obtenirAnnonce: (id) => api.get(`/annonces/${id}`),
   creerAnnonce: (donneesAnnonce) => api.post('/annonces', donneesAnnonce),
+  modifierAnnonce: (id, donneesAnnonce) => api.put(`/annonces/${id}`, donneesAnnonce), // ← AJOUTER CETTE LIGNE
   supprimerAnnonce: (id) => api.delete(`/annonces/${id}`),
 };
-
 export default api;

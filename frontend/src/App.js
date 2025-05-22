@@ -7,11 +7,12 @@ import ListeAnnonces from './composants/ListeAnnonces';
 import CreerAnnonce from './composants/CreerAnnonce';
 import DetailAnnonce from './composants/DetailAnnonce';
 import './App.css';
+import ModifierAnnonce from './composants/ModifierAnnonce';
 
 function App() {
   const [utilisateurConnecte, setUtilisateurConnecte] = useState(null);
   const [chargement, setChargement] = useState(true);
-
+  // const [utilisateurConnecte, setUtilisateurConnecte] = useState(null);
   useEffect(() => {
     // Vérifier si un utilisateur est déjà connecté
     const token = localStorage.getItem('token');
@@ -78,6 +79,14 @@ function App() {
                 <Navigate to="/connexion" />
               } 
             />
+            <Route 
+  path="/modifier-annonce/:id" 
+  element={
+    utilisateurConnecte ? 
+    <ModifierAnnonce /> : 
+    <Navigate to="/connexion" />
+  } 
+/>
           </Routes>
         </main>
       </div>

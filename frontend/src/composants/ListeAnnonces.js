@@ -7,6 +7,7 @@ const ListeAnnonces = () => {
   const [categorieSelectionnee, setCategorieSelectionnee] = useState('Toutes');
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState('');
+  const [utilisateurConnecte, setUtilisateurConnecte] = useState(null);
 
   const categories = [
     'Toutes', 'Immobilier', 'Véhicules', 'Électronique', 
@@ -26,7 +27,12 @@ const ListeAnnonces = () => {
       setChargement(false);
     }
   };
-
+  useEffect(() => {
+    const utilisateur = localStorage.getItem('utilisateur');
+    if (utilisateur) {
+      setUtilisateurConnecte(JSON.parse(utilisateur));
+    }
+  }, []);
   useEffect(() => {
     chargerAnnonces(categorieSelectionnee);
   }, [categorieSelectionnee]);
@@ -105,6 +111,16 @@ const ListeAnnonces = () => {
                 >
                   Voir les détails
                 </Link>
+                {utilisateurConnecte && annonce.auteur && 
+   utilisateurConnecte.id === annonce.auteur._id && (
+    <Link 
+      to={`/modifier-annonce/${annonce._id}`}
+      className="btn-modifier"
+    >
+      Modifier
+    </Link>
+  )}
+  
                 <button 
                   onClick={() => supprimerAnnonce(annonce._id)}
                   className="btn-supprimer"
